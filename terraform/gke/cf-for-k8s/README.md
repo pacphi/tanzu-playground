@@ -16,15 +16,15 @@ Example:
 
 ```
 module "cf_for_k8s" {
-  source = "github.com/niallthomson/tanzu-playground//terraform/gke/cf-for-k8s"
+  source = "github.com/pacphi/tanzu-playground//terraform/gke/cf-for-k8s"
 
-  acme_email          = "nthomson@pivotal.io"
+  acme_email          = "cphillipson@pivotal.io"
   base_zone_name      = "paasify-zone"
 
   environment_name    = "demo"
   dns_prefix          = "demo"
 
-  project             = "fe-nthomson"
+  project             = "fe-cphillipson"
 }
 
 output "cf_api_endpoint" {
@@ -69,7 +69,6 @@ The following are pre-requisites to run the above Terraform:
 | dns\_prefix | The DNS prefix that will be used to generate a unique domain from the base domain | `string` | n/a | yes |
 | environment\_name | A name for the environment, which is used for various IaaS resources | `string` | n/a | yes |
 | project | The Google Cloud project to use | `string` | n/a | yes |
-| kubernetes\_version | Version of Kubernetes to use for the cluster | `string` | `"1.15.9-gke.26"` | no |
 | region | The GCP region where the resources will be deployed | `string` | `"us-central1"` | no |
 | zone | The default GCP zone to use where applicable | `string` | `"us-central1-b"` | no |
 
@@ -80,3 +79,12 @@ The following are pre-requisites to run the above Terraform:
 | cf\_admin\_password | Cloud Foundry admin password |
 | cf\_admin\_username | Cloud Foundry admin username |
 | cf\_api\_endpoint | Cloud Foundry API endpoint |
+
+## Usage
+
+* Author `main.tf` (consult example above)
+* Execute `terraform init`
+* Fetch `vendor` directory for `cf_for_k8s` Terraform module
+  * `cd .terraform/modules/cf_for_k8s/ytt-libs/cf-for-k8s && vendir sync && cd ../../../../..`
+* Execute `terraform plan`
+* Execute `terraform apply -auto-approve`

@@ -2,7 +2,14 @@ provider "google" {
   project = var.project
   region  = var.region
 
-  version = "~> 3.14.0"
+  version = "~> 3.20.0"
+}
+
+provider "google-beta" {
+  project     = var.project
+  region      = var.region
+
+  version = "~> 3.20.0"
 }
 
 provider "kubernetes" {
@@ -22,7 +29,7 @@ provider "helm" {
     load_config_file       = false
   }
 
-  version = "~> 1.1.0"
+  version = "~> 1.2.0"
 }
 
 provider "k14sx" {

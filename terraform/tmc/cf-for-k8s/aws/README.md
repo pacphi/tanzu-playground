@@ -17,14 +17,14 @@ Example:
 
 ```
 module "cf_for_k8s" {
-  source = "github.com/niallthomson/tanzu-playground//terraform/tmc/aws/cf-for-k8s"
+  source = "github.com/pacphi/tanzu-playground//terraform/tmc/aws/cf-for-k8s"
 
   tmc_key             = "<tmc api key>"
   tmc_cluster_group   = "my-cluster-group"
   tmc_account_name    = "AWS-account"
   tmc_ssh_key_name    = "default"
 
-  acme_email          = "nthomson@pivotal.io"
+  acme_email          = "cphillipson@pivotal.io"
   base_hosted_zone_id = "ZDZTEPQIQJB05"
 
   environment_name    = "demo"

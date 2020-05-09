@@ -11,5 +11,5 @@ output "cf_admin_username" {
 }
 
 output "cf_admin_password" {
-  value = random_password.admin_password.result
+  value = random_password.gen.result
 }

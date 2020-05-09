@@ -2,7 +2,7 @@ locals {
   sys_domain = "cf.${var.domain}"
 }
 
-resource "random_password" "admin_password" {
+resource "random_password" "gen" {
   length = 16
   special = false
 }
@@ -11,7 +11,7 @@ data "template_file" "cert_secret" {
   template = file("${path.module}/templates/cert-secret.yml")
 
   vars = {
-    admin_password = random_password.admin_password.result
+    admin_password = random_password.gen.result
     domain         = local.sys_domain
 
     tls_cert        = base64encode(var.tls_cert)
@@ -28,7 +28,7 @@ data "template_file" "values" {
   template = file("${path.module}/templates/values.yml")
 
   vars = {
-    admin_password = random_password.admin_password.result
+    admin_password = random_password.gen.result
     domain         = local.sys_domain
 
     tls_cert        = base64encode(var.tls_cert)
@@ -66,7 +66,7 @@ resource "null_resource" "blocker" {
 
 resource "k14sx_kapp" "cf_for_k8s" {
   depends_on = [null_resource.blocker]
-  
+
   app = "cf"
   namespace = "default"
 

@@ -28,7 +28,7 @@ resource "null_resource" "blocker" {
 resource "k14sx_kapp" "harbor_cert" {
   depends_on = [null_resource.blocker]
   app = "harbor-cert"
-  
+
   namespace = "default"
 
   config_yaml = data.template_file.harbor_cert.rendered

@@ -3,12 +3,6 @@ variable "environment_name" {
   type        = string
 }
 
-variable "kubernetes_version" {
-  description = "Version of Kubernetes to use for the cluster"
-  default     = "1.15.9-gke.26"
-  type        = string
-}
-
 variable "acme_email" {
   description = "Email address that will be used for Lets Encrypt certificate registration"
   type        = string
@@ -23,16 +17,6 @@ variable "dns_prefix" {
   description = "The DNS prefix that will be used to generate a unique domain from the base domain"
   type        = string
 }
-
-/*variable "master_instance_type" {
-  description = "The EC2 instance type of the Kubernetes master nodes"
-  default     = "m5.large"
-}
-
-variable "node_pool_instance_type" {
-  description = "The EC2 instance type of the Kubernetes worker nodes"
-  default     = "t2.medium"
-}*/
 
 variable "project" {
   description = "The Google Cloud project to use"
@@ -49,4 +33,19 @@ variable "zone" {
   description = "The default GCP zone to use where applicable"
   default = "us-central1-b"
   type = string
+}
+
+variable "node_count" {
+  type = number
+  default = 5
+}
+
+variable "node_machine_type" {
+  type = string
+  default = "n1-standard-4"
+}
+
+variable "release_channel" {
+  type = string
+  default = "RAPID"
 }

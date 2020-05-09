@@ -4,3 +4,4 @@
 test
 kubeconfig
 *.log
+.history/
