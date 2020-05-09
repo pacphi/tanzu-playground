@@ -26,7 +26,7 @@ resource "k14sx_kapp" "prereqs" {
   namespace = "default"
 
   files = [
-    "https://raw.githubusercontent.com/jetstack/cert-manager/release-0.13/deploy/manifests/00-crds.yaml"
+    "https://github.com/jetstack/cert-manager/releases/download/v0.15.0/cert-manager.crds.yaml"
   ]
 
   config_yaml = data.template_file.prereqs.rendered
@@ -44,7 +44,7 @@ resource "helm_release" "certmanager" {
   namespace  = kubernetes_namespace.certmanager.metadata[0].name
   repository = data.helm_repository.jetstack.name
   chart      = "cert-manager"
-  version    = "v0.13.0"
+  version    = "v0.15.0"
 
   set {
     name  = "ingressShim.defaultIssuerName"

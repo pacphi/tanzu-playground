@@ -32,7 +32,7 @@ resource "kubernetes_job" "apply_job" {
       spec {
         container {
           name    = "apply-${var.name}"
-          image   = "lachlanevenson/k8s-kubectl:v1.13.10"
+          image   = "lachlanevenson/k8s-kubectl:v1.15.10"
           command = ["kubectl", "apply", "-f", "/tmp/config/yml"]
 
           volume_mount {
@@ -47,7 +47,7 @@ resource "kubernetes_job" "apply_job" {
             name = kubernetes_config_map.apply_config_map.metadata.0.name
           }
         }
-        
+
         restart_policy = "Never"
         service_account_name = "helm"
         automount_service_account_token = true

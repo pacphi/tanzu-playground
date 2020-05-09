@@ -16,4 +16,3 @@ spec:
       dns01:
         clouddns:
           project: ${project}
-          
