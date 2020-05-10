@@ -13,19 +13,14 @@ data "template_file" "concourse_config" {
   }
 }
 
-data "helm_repository" "concourse" {
-  name = "concourse"
-  url  = "https://concourse-charts.storage.googleapis.com/"
-}
-
 resource "helm_release" "concourse" {
   depends_on = [null_resource.uaa_blocker]
 
   name       = "concourse"
   namespace  = "concourse"
-  repository = data.helm_repository.concourse.name
+  repository = "https://concourse-charts.storage.googleapis.com/"
   chart      = "concourse"
-  version    = "9.1.1"
+  version    = "10.0.7"
 
   values = [data.template_file.concourse_config.rendered]
 

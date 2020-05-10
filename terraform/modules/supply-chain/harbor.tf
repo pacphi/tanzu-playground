@@ -1,8 +1,3 @@
-data "helm_repository" "harbor" {
-  name = "harbor"
-  url  = "https://helm.goharbor.io"
-}
-
 data "template_file" "harbor_cert" {
   depends_on = [
     null_resource.uaa_blocker,
@@ -44,9 +39,9 @@ resource "helm_release" "harbor" {
 
   name       = "harbor"
   namespace  = kubernetes_namespace.harbor.metadata[0].name
-  repository = data.helm_repository.harbor.name
+  repository = "https://helm.goharbor.io"
   chart      = "harbor"
-  version    = "1.3.1"
+  version    = "1.3.2"
 
   values = [data.template_file.harbor_config.rendered]
 

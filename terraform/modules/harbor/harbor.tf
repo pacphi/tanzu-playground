@@ -1,8 +1,3 @@
-data "helm_repository" "harbor" {
-  name = "harbor"
-  url  = "https://helm.goharbor.io"
-}
-
 resource "kubernetes_namespace" "harbor" {
   metadata {
     name = "harbor"
@@ -54,7 +49,7 @@ resource "helm_release" "harbor" {
 
   name       = "harbor"
   namespace  = kubernetes_namespace.harbor.metadata[0].name
-  repository = data.helm_repository.harbor.name
+  repository = "https://helm.goharbor.io"
   chart      = "harbor"
   version    = "1.3.2"
 

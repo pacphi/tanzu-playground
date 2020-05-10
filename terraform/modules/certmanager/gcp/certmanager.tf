@@ -32,17 +32,12 @@ resource "k14sx_kapp" "prereqs" {
   config_yaml = data.template_file.prereqs.rendered
 }
 
-data "helm_repository" "jetstack" {
-  name = "jetstack"
-  url  = "https://charts.jetstack.io"
-}
-
 resource "helm_release" "certmanager" {
   depends_on = [k14sx_kapp.prereqs]
 
   name       = "certmanager"
   namespace  = kubernetes_namespace.certmanager.metadata[0].name
-  repository = data.helm_repository.jetstack.name
+  repository = "https://charts.jetstack.io"
   chart      = "cert-manager"
   version    = "v0.15.0"
 

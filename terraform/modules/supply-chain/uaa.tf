@@ -1,8 +1,3 @@
-data "helm_repository" "default" {
-  name = "eirini"
-  url  = "https://cloudfoundry-incubator.github.io/eirini-release"
-}
-
 resource "random_string" "uaa_admin_client_secret" {
   length  = 24
   special = false
@@ -21,7 +16,7 @@ resource "helm_release" "uaa" {
 
   name       = "uaa"
   namespace  = "uaa"
-  repository = data.helm_repository.default.name
+  repository = "https://cloudfoundry-incubator.github.io/eirini-release"
   chart      = "uaa"
   version    = "2.19.1"
   values     = [data.template_file.helm_config.rendered]
