@@ -1,6 +1,6 @@
 #@data/values
 ---
-certmanager:
+:
   #@overlay/match missing_ok=True
   acmeEmail: ""
   #@overlay/match missing_ok=True

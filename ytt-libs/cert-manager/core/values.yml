@@ -1,4 +1,4 @@
 #@data/values
 ---
 certmanager:
-  namespace: default
+  namespace: cert-manager

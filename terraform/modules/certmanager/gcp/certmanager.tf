@@ -1,6 +1,6 @@
 resource "kubernetes_namespace" "certmanager" {
   metadata {
-    name = "certmanager"
+    name = "cert-manager"
   }
 }
 
@@ -35,7 +35,7 @@ resource "k14sx_kapp" "prereqs" {
 resource "helm_release" "certmanager" {
   depends_on = [k14sx_kapp.prereqs]
 
-  name       = "certmanager"
+  name       = "cert-manager"
   namespace  = kubernetes_namespace.certmanager.metadata[0].name
   repository = "https://charts.jetstack.io"
   chart      = "cert-manager"

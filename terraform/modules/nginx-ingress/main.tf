@@ -14,7 +14,7 @@ resource "null_resource" "blocker" {
 
 resource "k14sx_kapp" "nginx" {
   depends_on = [null_resource.blocker]
-  
+
   app = "nginx-ingress"
   namespace = "default"
 
