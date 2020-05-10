@@ -56,7 +56,7 @@ resource "helm_release" "harbor" {
   namespace  = kubernetes_namespace.harbor.metadata[0].name
   repository = data.helm_repository.harbor.name
   chart      = "harbor"
-  version    = "1.3.1"
+  version    = "1.3.2"
 
   values = [data.template_file.harbor_config.rendered]
 
