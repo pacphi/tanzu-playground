@@ -47,6 +47,11 @@ resource "helm_release" "certmanager" {
   version    = "v0.15.0"
 
   set {
+    name = "installCRDs"
+    value = true
+  }
+
+  set {
     name  = "ingressShim.defaultIssuerName"
     value = "letsencrypt-prod"
   }
