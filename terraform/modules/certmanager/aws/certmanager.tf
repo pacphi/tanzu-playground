@@ -29,7 +29,7 @@ resource "k14sx_kapp" "prereqs" {
   depends_on = [null_resource.in_blocker]
 
   app = "certmanager-prereqs"
-  namespace = "default"
+  namespace = kubernetes_namespace.certmanager.metadata[0].name
 
   files = [
     "https://github.com/jetstack/cert-manager/releases/download/v0.15.0/cert-manager.crds.yaml"
@@ -44,7 +44,7 @@ resource "helm_release" "certmanager" {
   name       = "cert-manager"
   namespace  = kubernetes_namespace.certmanager.metadata[0].name
   repository = "https://charts.jetstack.io"
-  chart      = "cert-manager"
+  chart      = "jetstack/cert-manager"
   version    = "v0.15.0"
 
   set {
