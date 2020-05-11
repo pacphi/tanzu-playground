@@ -1,7 +1,7 @@
 provider "aws" {
   region = var.region
 
-  version = "~> 2.54.0"
+  version = "~> 2.61.0"
 }
 
 data "aws_eks_cluster_auth" "default" {
@@ -14,7 +14,7 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(aws_eks_cluster.cluster.certificate_authority.0.data)
   load_config_file       = false
 
-  version = "~> 1.11.0"
+  version = "~> 1.15.0"
 }
 
 provider "helm" {
@@ -25,7 +25,7 @@ provider "helm" {
     load_config_file       = false
   }
 
-  version = "~> 1.1.0"
+  version = "~> 1.2.0"
 }
 
 provider "k14sx" {
@@ -38,7 +38,7 @@ provider "k14sx" {
     }
   }
 
-  version = "~> 0.0.2"
+  version = "~> 0.0.3"
 }
 
 locals {
