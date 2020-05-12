@@ -25,20 +25,13 @@ provider "helm" {
     load_config_file       = false
   }
 
-  version = "~> 1.1.0"
+  version = "~> 1.2.0"
 }
 
-provider "k14sx" {
+provider "k14s" {
   kapp {
-    kubernetes {
-      host                   = aws_eks_cluster.cluster.endpoint
-      token                  = data.aws_eks_cluster_auth.default.token
-      cluster_ca_certificate = base64decode(aws_eks_cluster.cluster.certificate_authority.0.data)
-      load_config_file       = false
-    }
+    kubeconfig_yaml = module.kubeconfig.content
   }
-
-  version = "~> 0.0.2"
 }
 
 locals {

@@ -41,7 +41,6 @@ Below is a summary of the aggregate modules that may be of immediate use.
 ### Providers
 
 The modules in this repository may use one or more custom Terraform providers:
-- A custom [k14s](https://github.com/niallthomson/terraform-provider-k14s) Terraform provider, which can be installed alongside the official one
 - A Tanzu Mission Control Terraform provider, which is currently internal to VMware (only required for TMC modules)
 
 Please carefully study the `README` for each module to understand any corresponding custom module dependencies.

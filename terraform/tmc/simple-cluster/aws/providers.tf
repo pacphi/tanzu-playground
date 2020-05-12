@@ -17,7 +17,7 @@ provider "kubernetes" {
 }
 
 provider "helm" {
-  version = "~> 1.1.0"
+  version = "~> 1.2.0"
 
   kubernetes {
     host                   = data.tmc_kubeconfig.kubeconfig.server
@@ -29,19 +29,10 @@ provider "helm" {
   }
 }
 
-provider "k14sx" {
+provider "k14s" {
   kapp {
-    kubernetes {
-      host                   = data.tmc_kubeconfig.kubeconfig.server
-
-      client_certificate     = base64decode(data.tmc_kubeconfig.kubeconfig.client_certificate)
-      client_key             = base64decode(data.tmc_kubeconfig.kubeconfig.client_key)
-      cluster_ca_certificate = base64decode(data.tmc_kubeconfig.kubeconfig.cluster_ca_certificate)
-      load_config_file       = false
-    }
+    kubeconfig_yaml = module.kubeconfig.content
   }
-
-  version = "~> 0.0.2"
 }
 
 locals {
