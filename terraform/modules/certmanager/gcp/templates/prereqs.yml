@@ -5,14 +5,14 @@ metadata:
   namespace: ${namespace}
 spec:
   acme:
-    server: https://acme-v02.api.letsencrypt.org/directory
     email: ${acmeEmail}
+    server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-prod
     solvers:
-    - selector:
-        dnsZones:
-        - "${domain}"
-      dns01:
+    - dns01:
         clouddns:
           project: ${project}
+      selector:
+        dnsZones:
+        - "${domain}"
